@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const CreditCard = (props) => {
   const {
     type,
@@ -10,10 +12,17 @@ const CreditCard = (props) => {
     color,
   } = props;
 
+  const newCreditNumber = () => {
+    let cryptedString = '**** **** **** ';
+    console.log(number.slice(12));
+    let newCryptedString = cryptedString + number.slice(12);
+    return newCryptedString;
+  };
+
   return (
     <div className="credit-card" style={{ backgroundColor: `${bgColor}` }}>
       <h2>{type}</h2>
-      <h1>{number}</h1>
+      <h1>{newCreditNumber()}</h1>
       <div className="horizontal-info">
         <h4>
           Expires {expirationMonth}/{expirationYear}

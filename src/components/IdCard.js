@@ -1,5 +1,6 @@
 const IdCard = (props) => {
   const { picture, firstName, lastName, gender, height, birth } = props;
+
   return (
     <div className="card">
       <img className="head-shot" src={picture} alt="" />
