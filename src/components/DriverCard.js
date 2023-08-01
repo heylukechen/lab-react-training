@@ -20,8 +20,8 @@ const DriverCard = (props) => {
   };
 
   return (
-    <div className="card">
-      <img className="head-shot-driver" src={img} alt="" />
+    <div className="card col-4">
+      <img className="head-shot" src={img} alt="" />
       <div className="card-content">
         <h1>{name}</h1>
         <Rating>{rating}</Rating>

@@ -12,6 +12,10 @@ import Dice from './components/Dice';
 import dogg from './assets/images/dogg.jpeg';
 import glasses from './assets/images/dogg-glasses.jpeg';
 import Carousel from './components/Carousel';
+import NumbersTable from './components/NumbersTable';
+import FaceBook from './components/FaceBook';
+import SignupPage from './components/SignupPage';
+import RGBColorPicker from './components/RGBColorPicker';
 
 function App() {
   return (
@@ -98,6 +102,19 @@ function App() {
           'https://randomuser.me/api/portraits/men/2.jpg',
         ]}
       />
+
+      {/* Iteration 12 */}
+      <NumbersTable limit={12} />
+
+      {/* Iteration 13 */}
+      {/* Iteration 14, missing search and expandsion interation */}
+      <FaceBook />
+
+      {/* Iteration 15, missing email checking */}
+      <SignupPage />
+
+      {/* Iteration 15 */}
+      <RGBColorPicker />
     </div>
   );
 }

@@ -2,7 +2,7 @@ const IdCard = (props) => {
   const { picture, firstName, lastName, gender, height, birth } = props;
 
   return (
-    <div className="card">
+    <div className="card col-4">
       <img className="head-shot" src={picture} alt="" />
       <div className="card-content">
         <p>
@@ -31,10 +31,3 @@ const IdCard = (props) => {
 };
 
 export default IdCard;
-
-// - `lastName`: A string
-// - `firstName`: A string
-// - `gender`: A string, `'male'` or `'female'`
-// - `height`: A number
-// - `birth`: A date
-// - `picture`: A string
