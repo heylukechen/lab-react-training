@@ -9,36 +9,43 @@ const SingleColorPicker = (props) => {
     //using the passed color value and do string temporal changes.
     <div style={{ display: 'flex', flexDirection: 'row' }}>
       {color === 'r' && (
-        <div
-          style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: `rgb(${value},0,0)`,
-          }}
-        ></div>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              backgroundColor: `rgb(${value},0,0)`,
+            }}
+          ></div>
+          <h4>r</h4>
+        </div>
       )}
 
       {color === 'g' && (
-        <div
-          style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: `rgb(0,${value},0)`,
-          }}
-        ></div>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              backgroundColor: `rgb(0,${value},0)`,
+            }}
+          ></div>
+          <h4>g</h4>
+        </div>
       )}
 
       {color === 'b' && (
-        <div
-          style={{
-            width: '32px',
-            height: '32px',
-            backgroundColor: `rgb(0,0,${value})`,
-          }}
-        ></div>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div
+            style={{
+              width: '32px',
+              height: '32px',
+              backgroundColor: `rgb(0,0,${value})`,
+            }}
+          ></div>
+          <h4>b</h4>
+        </div>
       )}
-
-      <h4>R</h4>
       <input
         type="number"
         value={value}

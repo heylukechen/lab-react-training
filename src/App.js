@@ -107,10 +107,10 @@ function App() {
       <NumbersTable limit={12} />
 
       {/* Iteration 13 */}
-      {/* Iteration 14, missing expandsion interation */}
+      {/* Iteration 14, missing elaborated expandsion interation */}
       <FaceBook />
 
-      {/* Iteration 15, missing email checking */}
+      {/* Iteration 15*/}
       <SignupPage />
 
       {/* Iteration 16 */}
