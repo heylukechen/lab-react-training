@@ -4,6 +4,8 @@ import { useState } from 'react';
 const FaceBook = () => {
   const [profileList, setProfileList] = useState(profiles);
   const [selectedCountry, setSelectedCountry] = useState(null);
+  const [isThisPerson, setIsThisPerson] = useState('');
+  const [expandedProfile, setExpandedProfile] = useState([]);
 
   const selectCountry = (country) => {
     setSelectedCountry(country);
@@ -38,12 +40,25 @@ const FaceBook = () => {
     }
   };
 
-  // const filterList = (country) => {
-  //   const newList = profiles.filter((profile) => {
-  //     return profile.country === country;
-  //   });
-  //   setProfileList(newList);
-  // };
+  const searchName = (value) => {
+    const newList = profiles.filter((profile) => {
+      return profile.lastName.includes(value);
+    });
+    setProfileList(newList);
+  };
+
+  const toggleExpansion = (img) => {
+    const copy = [...expandedProfile];
+  
+    if(expandedProfile.includes(img)){
+      const index = copy.indexOf(img);
+      copy.splice(index, 1);
+      setExpandedProfile(copy);
+    } else {
+      copy.push(img);
+      setExpandedProfile(copy);
+    }
+  };
 
   return (
     <div>
@@ -70,9 +85,13 @@ const FaceBook = () => {
           id="profile-sort"
         >
           <option value="default">Defualt</option>
-          <option value="alphabeticalAscending">Name: A->Z</option>
-          <option value="alphabeticalDescending">Name: Z->A</option>
+          <option value="alphabeticalAscending">Name: A to Z</option>
+          <option value="alphabeticalDescending">Name: Z to A</option>
         </select>
+      </div>
+      <div>
+        <label htmlFor="">Search for lastname</label>
+        <input type="text" onChange={(e) => searchName(e.target.value)} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
         {profileList.map((profile) => {
@@ -84,26 +103,39 @@ const FaceBook = () => {
                   profile.country === selectedCountry ? 'lightblue' : 'white',
                 border: 'solid',
               }}
+              key={profile.img}
             >
-              <img className="head-shot" src={profile.img} alt="" />
-              <div className="card-content">
-                <p>
-                  <span>Frist name: </span>
-                  {profile.firstName}
-                </p>
-                <p>
-                  <span>Last name: </span>
-                  {profile.lastName}
-                </p>
-                <p>
-                  <span>Country: </span>
-                  {profile.country}
-                </p>
-                <p>
-                  <span>Type: </span>
-                  {profile.isStudent ? <>Student</> : <>Teacher</>}
-                </p>
-              </div>
+              <img
+                className="head-shot"
+                src={profile.img}
+                alt=""
+                onClick={() => {
+                  setIsThisPerson(profile.img);
+                  toggleExpansion(profile.img);
+                }}
+              />
+              {isThisPerson === profile.img ? (
+                <div className="card-content">
+                  <p>
+                    <span>Frist name: </span>
+                    {profile.firstName}
+                  </p>
+                  <p>
+                    <span>Last name: </span>
+                    {profile.lastName}
+                  </p>
+                  <p>
+                    <span>Country: </span>
+                    {profile.country}
+                  </p>
+                  <p>
+                    <span>Type: </span>
+                    {profile.isStudent ? <>Student</> : <>Teacher</>}
+                  </p>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
           );
         })}

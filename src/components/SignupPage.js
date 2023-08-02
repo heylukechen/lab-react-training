@@ -3,10 +3,10 @@ import { useState } from 'react';
 const SignupPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [nationality, setNationality] = useState('');
 
   let [helloWorld, setHelloWorld] = useState('Hello');
   let [isPasswordLegit, setIsPasswordLegit] = useState(null);
+  let [isEmailLegit, setIsEmailLegit] = useState(null);
 
   const checkHelloWorld = (language) => {
     console.log(language);
@@ -16,6 +16,14 @@ const SignupPage = () => {
       setHelloWorld('Hallo');
     } else {
       setHelloWorld('Hello');
+    }
+  };
+
+  const validateEmail = (mail) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      setIsEmailLegit(true);
+    } else {
+      setIsEmailLegit(false);
     }
   };
 
@@ -39,16 +47,22 @@ const SignupPage = () => {
       <div class="form-group">
         <label for="inputEmail1">Email address</label>
         <input
-          onChange={(e) => grabEmail(e.target.value)}
+          onChange={(e) => {
+            grabEmail(e.target.value);
+            validateEmail(e.target.value);
+          }}
           type="email"
           class="form-control"
           id="inputEmail1"
           aria-describedby="emailHelp"
           placeholder="Enter email"
         />
-        <small id="emailHelp" class="form-text text-muted">
-          You typed a valid email!
-        </small>
+        {email.length > 0 &&
+          (isEmailLegit ? (
+            <small style={{ color: 'green' }}>Your email is legit!</small>
+          ) : (
+            <small style={{ color: 'red' }}>Your email is invalid!</small>
+          ))}
       </div>
       <div class="form-group">
         <label for="inputPassword1">Password</label>

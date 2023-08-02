@@ -107,13 +107,13 @@ function App() {
       <NumbersTable limit={12} />
 
       {/* Iteration 13 */}
-      {/* Iteration 14, missing search and expandsion interation */}
+      {/* Iteration 14, missing expandsion interation */}
       <FaceBook />
 
       {/* Iteration 15, missing email checking */}
       <SignupPage />
 
-      {/* Iteration 15 */}
+      {/* Iteration 16 */}
       <RGBColorPicker />
     </div>
   );
