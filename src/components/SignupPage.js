@@ -1,3 +1,4 @@
+import { isDisabled } from '@testing-library/user-event/dist/utils';
 import { useState } from 'react';
 
 const SignupPage = () => {
@@ -32,8 +33,10 @@ const SignupPage = () => {
   };
 
   const checkPassword = (passedPassword) => {
-    let regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+//button can be disbaled
+    let regex = new RegExp("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$");
+    console.log(regex.test(passedPassword));
+
     if (regex.test(passedPassword)) {
       setIsPasswordLegit(true);
       setPassword(passedPassword);
@@ -42,12 +45,16 @@ const SignupPage = () => {
     }
   };
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit} className="card col-8 needs-validation row-gap-3" novalidate>
+    <form
+      onSubmit={handleSubmit}
+      className="card col-8 needs-validation row-gap-3"
+      novalidate
+    >
       <div class="form-group">
         <label for="inputEmail1">Email address</label>
         <input
@@ -99,13 +106,14 @@ const SignupPage = () => {
           <option>fr</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary">
+      
+      <button disabled={(!isPasswordLegit)||(!isEmailLegit)} type="submit" class="btn btn-primary">
         Sign up
       </button>
       <div>
         <p>{helloWorld}</p>
         <p>Your email address is: {email}</p>
-        <p></p>
+        {(isPasswordLegit&&isEmailLegit) && <p>You can legible to sign up!</p> }
       </div>
     </form>
   );
