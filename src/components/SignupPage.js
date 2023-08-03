@@ -42,8 +42,12 @@ const SignupPage = () => {
     }
   };
 
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+  }
+
   return (
-    <form className="card col-8 needs-validation row-gap-3" novalidate>
+    <form onSubmit={handleSubmit} className="card col-8 needs-validation row-gap-3" novalidate>
       <div class="form-group">
         <label for="inputEmail1">Email address</label>
         <input
